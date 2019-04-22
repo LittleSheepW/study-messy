@@ -7,19 +7,22 @@ import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * 〈一句话功能简述〉<br>
- * 〈RestTemplate配置类〉
- */
+ * @Program: boot-study
+ * @Description: RestTemplate配置类
+ * @Author: Sun
+ * @Create: 2019-04-19 10:28
+ * @Version: 1.0
+ **/
 @Configuration
 public class RestTemplateConfig {
 
     @Bean
-    public RestTemplate restTemplate(ClientHttpRequestFactory factory){
+    public RestTemplate restTemplate(ClientHttpRequestFactory factory) {
         return new RestTemplate(factory);
     }
 
     @Bean
-    public ClientHttpRequestFactory simpleClientHttpRequestFactory(){
+    public ClientHttpRequestFactory simpleClientHttpRequestFactory() {
         SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
         // 单位为ms
         factory.setReadTimeout(5000);
