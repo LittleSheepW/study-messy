@@ -44,8 +44,8 @@ public class TaskA {
      * (5),:表示列出枚举值值。例如：在Minutes域使用5,20，则意味着在5和20分触发。
      */
     @Scheduled(cron = "0/5 * *  * * ? ")   //每5秒执行一次
-    public void bTask() {
+    public void aTask() {
         DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        System.out.println(sdf.format(new Date()) + "*********B任务每5秒执行一次进入测试");
+        System.out.println(sdf.format(new Date()) + "*********A任务每5秒执行一次进入测试");
     }
 }
