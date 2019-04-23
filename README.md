@@ -1,4 +1,3 @@
-# study-messy
 ### 记录所学零碎知识。
 
 1、**config**包中  
