@@ -31,6 +31,28 @@ public class QuartzScheduler {
     }
 
     /**
+     * 初始化配置定时任务
+     * @param scheduler
+     * @throws SchedulerException
+     */
+    private void initJob(Scheduler scheduler) throws SchedulerException {
+        /**
+         * 通过JobBuilder构建JobDetail实例，JobDetail规定只能是实现Job接口的实例，JobDetail 是具体Job实例
+         */
+        JobDetail jobDetail = JobBuilder.newJob(SchedulerQuartzJob.class).withIdentity("job1", "group1").build();
+        // 基于表达式构建触发器
+        CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule("0/5 * * * * ?");
+        /**
+         * CronTrigger表达式触发器 继承于Trigger
+         * TriggerBuilder 用于构建触发器实例
+         */
+        CronTrigger cronTrigger = TriggerBuilder.newTrigger().withIdentity("job1", "group1")
+                .withSchedule(cronScheduleBuilder).build();
+        // 将任务加入调度器中
+        scheduler.scheduleJob(jobDetail, cronTrigger);
+    }
+
+    /**
      * 获取Job信息
      * 
      * @param name
@@ -133,28 +155,4 @@ public class QuartzScheduler {
         }
         scheduler.deleteJob(jobKey);
     }
-
-
-    /**
-     * 初始化配置定时任务
-     * @param scheduler
-     * @throws SchedulerException
-     */
-    private void initJob(Scheduler scheduler) throws SchedulerException {
-        /**
-         * 通过JobBuilder构建JobDetail实例，JobDetail规定只能是实现Job接口的实例，JobDetail 是具体Job实例
-         */
-        JobDetail jobDetail = JobBuilder.newJob(SchedulerQuartzJob.class).withIdentity("job1", "group1").build();
-        // 基于表达式构建触发器
-        CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule("0/5 * * * * ?");
-        /**
-         * CronTrigger表达式触发器 继承于Trigger
-         * TriggerBuilder 用于构建触发器实例
-         */
-        CronTrigger cronTrigger = TriggerBuilder.newTrigger().withIdentity("job1", "group1")
-                .withSchedule(cronScheduleBuilder).build();
-        // 将任务加入调度器中
-        scheduler.scheduleJob(jobDetail, cronTrigger);
-    }
-
 }
