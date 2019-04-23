@@ -26,7 +26,7 @@
         
 [ 文字加入超链接 ](https://github.com/LittleSheepW/study-messy  "悬停显示")
 
-* 昵称：Sun  
+
 
 * 编程语言  
     * 脚本语言  
@@ -41,14 +41,14 @@
 ![](http://www.baidu.com/img/bdlogo.gif "百度logo")
 
 ``` 
-    @RequestMapping(value = "/pauseAll")
-        public void pauseAllQuartzJob() {
-            try {
-                quartzScheduler.pauseAllJob();
-            } catch (SchedulerException e) {
-                e.printStackTrace();
-            }
-        } 
+@RequestMapping(value = "/pauseAll")
+public void pauseAllQuartzJob() {
+    try {
+        quartzScheduler.pauseAllJob();
+    } catch (SchedulerException e) {
+        e.printStackTrace();
+    }
+} 
 ```
 
 
