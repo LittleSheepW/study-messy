@@ -1,5 +1,6 @@
 package com.ww.study.exception;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,18 +24,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @Version: 1.0
  **/
 @ControllerAdvice
+@Slf4j
 public class BaseExceptionHandler {
 
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public void handleException(Exception e) {
-        System.out.println("我是Exception");
+        log.error("程序运行异常 : {}", e.getMessage());
     }
 
     @ExceptionHandler(value = RuntimeException.class)
     @ResponseBody
     public void handleException(RuntimeException e) {
-        System.out.println("我是RuntimeException");
+        log.error("程序运行异常 : {}", e.getMessage());
     }
 
 }

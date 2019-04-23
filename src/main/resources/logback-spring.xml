@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="false" scanPeriod="10 seconds" debug="false">
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <contextName>kkcode-user</contextName>
+    <!--日志格式pattern 通过${CONSOLE_LOG_PATTERN}引用-->
+    <property name="CONSOLE_LOG_PATTERN"
+              value="[%date{yyyy-MM-dd HH:mm:ss.SSS}] [%highlight(%-5level)] [%highlight(%thread)] [ %highlight(%logger{40}:%line)] ==>: %msg%n"
+    />
+
+    <!--日志格式pattern 通过${LOG_PATTERN}引用-->
+    <property name="LOG_PATTERN"
+              value="[%date{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] [%thread] [%logger{40}:%line] ==>: %msg%n"
+    />
+    <!--日志路径-->
+    <property name="LOG_BASE_DIR" value="logs"/>
+
+    <!--本地开发的日志路径-->
+    <springProfile name="dev">
+        <property name="LOG_BASE_DIR" value="logs"/>
+    </springProfile>
+
+    <!--测试环境的日志路径-->
+    <springProfile name="test">
+        <property name="LOG_BASE_DIR" value="logs"/>
+    </springProfile>
+
+    <!--线上环境的日志路径-->
+    <springProfile name="prod">
+        <property name="LOG_BASE_DIR" value="logs"/>
+    </springProfile>
+
+    <!--文件输出的格式设置 -->
+    <appender name="FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 文件输出的日志 的格式 -->
+        <encoder>
+            <pattern>
+                ${FILE_LOG_PATTERN}
+            </pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_BASE_DIR}/study-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- 最大100MB 超过最大值，会重新建一个文件-->
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <!--控制台日志-->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                ${CONSOLE_LOG_PATTERN}
+            </pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!--错误日志-->
+    <appender name="ERROR_FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>Error</level>
+        </filter>
+
+        <!-- 文件输出的日志 的格式 -->
+        <encoder>
+            <pattern>
+                ${FILE_LOG_PATTERN}
+            </pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_BASE_DIR}/error-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- 最大100MB 超过最大值，会重新建一个文件-->
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="ERROR_FILE"/>
+    </root>
+
+    <!--<logger name="org.springframework" level="INFO">-->
+    <logger name="org" level="INFO">
+    </logger>
+    <logger name="com" level="INFO">
+    </logger>
+    <logger name="net" level="INFO">
+    </logger>
+
+</configuration>
