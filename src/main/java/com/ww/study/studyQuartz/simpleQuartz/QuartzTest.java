@@ -10,7 +10,7 @@ import static org.quartz.TriggerBuilder.newTrigger;
 
 /**
  * Scheduler: 调度器。所有的调度都是由它控制。
- * Trigger:   定义触发的条件。例子中，它的类型是SimpleTrigger，每隔1秒中执行一次（什么是SimpleTrigger下面会有详述）。
+ * Trigger: 定义触发的条件。例子中，它的类型是SimpleTrigger，每隔1秒中执行一次（什么是SimpleTrigger下面会有详述）。
  * JobDetail & Job:JobDetail是任务的定义，而真正的执行逻辑是在Job中。
  * 为什么设计成JobDetail + Job，不直接使用Job？
  * 这是因为任务是有可能并发执行，如果Scheduler直接使用Job，就会存在对同一个Job实例并发访问的问题。

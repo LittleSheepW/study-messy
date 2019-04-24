@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 /**
- * @Program: boot-study
+ * @Program: study-messy
  * @Description: SpringBoot集成SpringTask实现定时任务,最简单的定时器任务
  * @Author: Sun
  * @Create: 2019-04-19 10:31

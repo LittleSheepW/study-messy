@@ -10,7 +10,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 /**
- * @Program: boot-study
+ * @Program: study-messy
  * @Description: 定时任务配置类，配置多线程执行定时任务，任务与任务之间互不影响
  * @Scheduled 这个注解给我们带了很大的方便，我们只要加上该注解，并且根据需求设置好就可以使用定时任务了。
  * 但是，我们需要注意的是，定时任务并不一定会按时执行。

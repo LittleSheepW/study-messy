@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @Program: boot-study
+ * @Program: study-messy
  * @Description: SpringTask TaskA
  * 在不配置定时任务线程池时，两个定时任务是存在问题的，前面的任务没有执行完毕，
  * 就算第二个任务到了执行任务的时间，第二个任务就会处于排队等待状态

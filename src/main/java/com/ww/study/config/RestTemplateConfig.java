@@ -7,7 +7,7 @@ import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * @Program: boot-study
+ * @Program: study-messy
  * @Description: RestTemplate配置类
  * @Author: Sun
  * @Create: 2019-04-19 10:28
